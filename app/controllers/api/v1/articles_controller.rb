@@ -1,7 +1,7 @@
 module Api::V1
   # base_api_controller を継承
   class ArticlesController < BaseApiController
-  #  before_action :authenticate_user!, only: [:show,:update,:destroy]
+    before_action :authenticate_user!, only: [:create,:update,:destroy]
 
     def index
       articles = Article.order(updated_at: :desc)
