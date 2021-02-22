@@ -1,6 +1,8 @@
 module Api::V1
   # base_api_controller を継承
   class ArticlesController < BaseApiController
+  #  before_action :authenticate_user!, only: [:show,:update,:destroy]
+
     def index
       articles = Article.order(updated_at: :desc)
       render json: articles, each_serializer: Api::V1::ArticlePreviewSerializer
@@ -13,7 +15,7 @@ module Api::V1
 
     def create
       articles = current_user.articles.create!(article_params)
-      render json: article, serializer: Api::V1::ArticleSerializer
+      render json: articles, serializer: Api::V1::ArticleSerializer
     end
 
     def update

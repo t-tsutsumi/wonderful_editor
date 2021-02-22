@@ -1,6 +1,6 @@
 require "rails_helper"
 # rubocop:disable all
-[...]
+#[...]
 RSpec.describe "Api::V1::Articles", type: :request do
   describe "GET /articles" do
     subject { get(api_v1_articles_path) }
@@ -57,6 +57,8 @@ RSpec.describe "Api::V1::Articles", type: :request do
     let(:params) { { article: attributes_for(:article) } }
     let(:current_user) { create(:user) }
 
+   # let(:headers) { user.create_new_auth_token }
+
     # stub
     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
 
@@ -74,6 +76,9 @@ RSpec.describe "Api::V1::Articles", type: :request do
 
     let(:params) { { article: attributes_for(:article) } }
     let(:current_user) { create(:user) }
+
+   # let(:headers) { user.create_new_auth_token }
+
     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
 
     context "自分が所持している記事のレコードを更新しようとするとき" do
@@ -103,6 +108,9 @@ RSpec.describe "Api::V1::Articles", type: :request do
     # devise_token_auth の導入が完了後に削除
     let(:current_user) { create(:user) }
     let(:article_id) { article.id }
+
+   # let(:headers) { user.create_new_auth_token }
+
     before { allow_any_instance_of(Api::V1::BaseApiController).to receive(:current_user).and_return(current_user) }
 
     # it "任意のユーザーのレコードを削除できる" do
